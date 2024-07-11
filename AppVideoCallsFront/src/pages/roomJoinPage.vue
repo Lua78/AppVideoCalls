@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!apiDataLoaded">
     <q-item-label>Insert room code</q-item-label>
     <q-input v-model="roomName" />
     <q-btn @click="join">Join</q-btn>
