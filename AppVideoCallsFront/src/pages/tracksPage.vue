@@ -2,8 +2,8 @@
   <q-page class="q-pa-md">
     <q-card class="q-pa-lg my-card">
       <q-card-section>
-        <q-label>Join chame - {{ props.roomName }}</q-label>
         <div class="text-h6">Video Meet</div>
+        <div class="text-h6">Share this code to join -> {{ props.roomName }}</div>
       </q-card-section>
       <div class="video-streams">
         <div ref="remoteVideo" class="video-container"></div>
