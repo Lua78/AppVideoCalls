@@ -1,18 +1,30 @@
 package com.app.video.services;
-import io.agora.media.RtcTokenBuilder2;
 import org.springframework.stereotype.Service;
+import com.app.video.media.RtcTokenBuilder;
+
+import java.util.Random;
+
 
 @Service
 public class AgoraService {
-    private final String appId = "c2494836b73e4cf89036741de30f8b93";
-    private final String appCertificate = "914b60bf3689494592b9885e1ad3766a";
-
+    private static final Random RANDOM = new Random();
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+    private static final int LENGHT = 6;
     public String generateToken(String channelName, String userId) {
-        RtcTokenBuilder2 tokenBuilder = new RtcTokenBuilder2();
-        int tokenExpirationInSeconds = 3600; // Token válido por 1 hora
-        int privilegeExpirationInSeconds = 3600;
-
+        RtcTokenBuilder tokenBuilder = new RtcTokenBuilder();
+        int expireTimestamp = (int) (System.currentTimeMillis() / 1000) + 3600;
+        String appCertificate = "dc0fef5bf0424784b8f74b5a8d6b91d0";
+        String appId = "c2494836b73e4cf89036741de30f8b93";
         return tokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, Integer.parseInt(userId),
-                RtcTokenBuilder2.Role.ROLE_PUBLISHER, tokenExpirationInSeconds, privilegeExpirationInSeconds);
+                RtcTokenBuilder.Role.Role_Publisher, expireTimestamp);
+    }
+
+    public String generateRandomChannelName() {
+        StringBuilder sb = new StringBuilder(LENGHT);
+        for (int i = 0; i < LENGHT; i++) {
+            int index = RANDOM.nextInt(CHARACTERS.length());
+            sb.append(CHARACTERS.charAt(index));
+        }
+        return sb.toString();
     }
 }
