@@ -22,7 +22,7 @@ const apiDataLoaded = ref(false);
 const userId = ref(0);
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://18.209.65.174:8080',
 });
 
 function generateRandomId() {
