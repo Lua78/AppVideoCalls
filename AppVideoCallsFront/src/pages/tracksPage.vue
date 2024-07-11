@@ -84,6 +84,10 @@ onBeforeMount(async () => {
         const remoteTrack = user.videoTrack;
         remoteTrack.play(remoteVideo.value);
       }
+      if (mediaType === 'audio') {
+        const audio = user.audioTrack;
+        audio.play();
+      }
     });
 
 
